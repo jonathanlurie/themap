@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Show drawn polygon area</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='js/mapbox/mapbox.js'></script>
+<link href='js/mapbox/mapbox.css' rel='stylesheet' />
+<link href='js/mapboxPlugins/draw/leaflet.draw.css' rel='stylesheet' />
+<script src='js/mapboxPlugins/draw/leaflet.draw.js'></script>
+<script src='js/mapboxPlugins/leaflet-geodesy/leaflet-geodesy.js'></script>
+
+
+
+<style>
+  body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+#modal {
+  position: absolute;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#menu {
+  width: 300px;
+  height: 90vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 5px;
+
+}
+
+#menu .logo {
+  width: 50%;
+  margin: 15px 25% 10px 25%;
+
+}
+
+#fields {
+  width: 90%;
+  height: 40%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.map-button,
+#fields input {
+  width: 100%;
+  border: none;
+  margin-bottom: 10px;
+  height: 30px;
+  color: white;
+  font-size: 14px;
+  font-family: monospace;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.54);
+  outline: none;
+}
+
+#fields hr {
+  border-style: dashed;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.map-button {
+  padding-top: 6px;
+  height: 24px;
+  background-color: white;
+  color: black;
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+
+}
+
+.map-button:hover{
+  background-color: #95ff8f;
+
+}
+
+</style>
+</head>
+<body>
+
+
+<div id='map'></div>
+<!--
+<div id="modal">
+  <div id="menu">
+    <img class="logo" src="../asset/logo.png"/>
+    <div id="fields">
+      <input id="username" type="text" value="mapbox">
+      <input id="styleId" type="text" value="streets-v10">
+      <input id="token" type="text" value="pk.eyJ1Ijoiam9uYXRoYW5sdXJpZSIsImEiOiJyQ0ZEVnZVIn0.1AhMgc1ZIGhsc_HCSSgL-w">
+      <div id="validateMapboxData" class="map-button">validate</div>
+      <hr />
+      <div id="launchCapture" class="map-button">launch capture</div>
+    </div>
+  </div>
+-->
+</div>
+
+
+<!--
+<div id='map'></div>
+<input id="theButton" type="button" value="Click Me" style="position: absolute;"  onclick="updateTileStyle('jonathanlurie', 'cj4g48asn0z5e2rn1alrdx14h')">
+-->
+<script>
+
+
+require('./renderer.js')
+
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "themap",
+  "version": "0.1.0",
+  "description": "An app to make map posters",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "map",
+    "poster",
+    "design"
+  ],
+  "author": "Jonathan Lurie",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "~1.6.2"
+  },
+  "dependencies": {
+    "leaflet": "^1.1.0",
+    "osmpostermaker": "github:jonathanlurie/osmpostermaker"
+  }
+}
