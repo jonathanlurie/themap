@@ -1,6 +1,4 @@
 
-
-
 console.log("dirname: " + __dirname);
 
 L.mapbox.accessToken = 'pk.eyJ1Ijoiam9uYXRoYW5sdXJpZSIsImEiOiJjajRuandpdnAwMHpzMnd0Y3FwYXBlNTZ0In0.yZ21xWxBlESJVQib1wJDoA';

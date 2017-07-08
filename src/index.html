@@ -106,7 +106,7 @@
 
 
 <div id='map'></div>
-<!--
+
 <div id="modal">
   <div id="menu">
     <img class="logo" src="../asset/logo.png"/>
@@ -119,7 +119,7 @@
       <div id="launchCapture" class="map-button">launch capture</div>
     </div>
   </div>
--->
+
 </div>
 
 
@@ -130,7 +130,26 @@
 <script>
 
 
-require('./renderer.js')
+//require('./renderer.js')
+
+//const HomeSpace = require("./HomeSpace.js")
+//console.log( HomeSpace.getWorkingDir() )
+
+const MapManager = require('./MapManager.js');
+var mapManager = new MapManager(
+  "map",
+  [0, 0],
+  2,
+  "pk.eyJ1Ijoiam9uYXRoYW5sdXJpZSIsImEiOiJjajRuandpdnAwMHpzMnd0Y3FwYXBlNTZ0In0.yZ21xWxBlESJVQib1wJDoA",
+  "mapbox",
+  "streets-v10"
+ );
+
+
+ mapManager.updateMapboxConfig({
+   username: 'jonathanlurie',
+   style: 'cj4g48asn0z5e2rn1alrdx14h'
+ })
 
 </script>
 </body>
