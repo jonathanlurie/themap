@@ -13,8 +13,15 @@
 
 
 <style>
-  body { margin:0; padding:0; }
-#map { position:absolute; top:0; bottom:0; width:100%; }
+
+body {
+  margin:0; padding:0;
+}
+
+#map {
+  position:absolute; top:0; bottom:0; width:100%;
+}
+
 #modal {
   position: absolute;
   z-index: 1000;
@@ -43,19 +50,32 @@
 
 }
 
-#fields {
+#fields-top {
   width: 90%;
-  height: 40%;
+  /*height: 30%;*/
   position: absolute;
-  top: 0;
+  top: 200px;
+  /*bottom: 0;*/
+  margin: auto;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: #0FF;
+}
+
+#fields-bottom {
+  width: 90%;
+  /*height: 30%;*/
+  position: absolute;
   bottom: 0;
   margin: auto;
   margin-left: 5%;
   margin-right: 5%;
+  margin-bottom: 5px;
+  background-color: #FF0;
 }
 
 .map-button,
-#fields input {
+#fields-top input {
   width: 100%;
   border: none;
   margin-bottom: 10px;
@@ -64,11 +84,16 @@
   font-size: 14px;
   font-family: monospace;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.54);
+  background-color: rgba(0, 0, 0, 0.5);
   outline: none;
+  animation: all 0.2s;
 }
 
-#fields hr {
+#fields-top input:focus {
+  background-color: #000;
+}
+
+#fields-top hr {
   border-style: dashed;
   border-width: 1px;
   border-color: rgba(0, 0, 0, 0.2);
@@ -95,9 +120,38 @@
 
 }
 
-.map-button:hover{
+.map-button:hover {
   background-color: #95ff8f;
+}
 
+.map-button:active {
+  background-color: #FFF;
+  color: #0ab500;
+}
+
+.secondary-button {
+  background-color: #888;
+}
+
+.half-left {
+  width: calc(50% - 3px);
+  margin-right: 3px;
+}
+
+.half-right {
+  width: calc(50% - 3px);
+  margin-left: 3px;
+}
+
+.multiCol {
+  width: 100%;
+  display: flex;
+}
+
+.text-div {
+  font-family: monospace;
+  text-align: center;
+  width: 100%;
 }
 
 </style>
@@ -110,13 +164,26 @@
 <div id="modal">
   <div id="menu">
     <img class="logo" src="../asset/logo.png"/>
-    <div id="fields">
-      <input id="username" type="text" value="mapbox">
-      <input id="styleId" type="text" value="streets-v10">
-      <input id="token" type="text" value="pk.eyJ1Ijoiam9uYXRoYW5sdXJpZSIsImEiOiJyQ0ZEVnZVIn0.1AhMgc1ZIGhsc_HCSSgL-w">
-      <div id="validateMapboxData" class="map-button">validate</div>
+    <div id="fields-top">
+      <input id="username" type="text" onClick="this.select();" placeholder="Mapbox username" value="mapbox" >
+      <input id="styleId" type="text" onClick="this.select();" placeholder="Mapbox style ID" value="streets-v10" >
+      <input id="token" type="text" onClick="this.select();" placeholder="Mapbox Token" value="pk.eyJ1Ijoiam9uYXRoYW5sdXJpZSIsImEiOiJyQ0ZEVnZVIn0.1AhMgc1ZIGhsc_HCSSgL-w">
+      <div class="multiCol">
+        <div id="reloadDefault" class="map-button half-left" title="Restore the default values">restore</div>
+        <div id="validateMapboxData" class="map-button half-right">validate</div>
+      </div>
+
       <hr />
+
+    </div>
+
+    <div id="fields-bottom">
       <div id="launchCapture" class="map-button">launch capture</div>
+      <div id="backToMap" class="map-button">back to map</div>
+      <div class="multiCol">
+        <div id="linkToGithub" class="half-left text-div">see on Github</div>●
+        <div id="linkToHelp" class="half-right text-div">get some help</div>
+      </div>
     </div>
   </div>
 
