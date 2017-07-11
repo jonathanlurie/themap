@@ -4,6 +4,7 @@
 <meta charset=utf-8 />
 <title>Show drawn polygon area</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
 <script src='js/mapbox/mapbox.js'></script>
 <link href='js/mapbox/mapbox.css' rel='stylesheet' />
 <link href='js/mapboxPlugins/draw/leaflet.draw.css' rel='stylesheet' />
@@ -59,7 +60,6 @@ body {
   margin: auto;
   margin-left: 5%;
   margin-right: 5%;
-  background-color: #0FF;
 }
 
 #fields-bottom {
@@ -71,7 +71,6 @@ body {
   margin-left: 5%;
   margin-right: 5%;
   margin-bottom: 5px;
-  background-color: #FF0;
 }
 
 .map-button,
@@ -148,10 +147,64 @@ body {
   display: flex;
 }
 
+.multiCol .fa {
+  font-size: 25px;
+}
+
 .text-div {
   font-family: monospace;
   text-align: center;
   width: 100%;
+}
+
+#menuFooter {
+  margin-top: 15px;
+  width: 100%;
+  font-size: 25px;
+  text-align: center;
+  color: #999;
+}
+
+#menuFooter .fa {
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#menuFooter .fa:hover {
+  color: #FFF;
+}
+
+
+#optionButton {
+  width: 150px;
+  height: 35px;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  /* top: 0; */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  padding-top: 8px;
+}
+
+
+#optionButton .fa {
+  width: 100%;
+  height: 100%;
+  font-size: 30px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+#optionButton .fa:hover {
+  color: rgba(255, 255, 255, 1);
 }
 
 </style>
@@ -161,6 +214,7 @@ body {
 
 <div id='map'></div>
 
+<!--
 <div id="modal">
   <div id="menu">
     <img class="logo" src="../asset/logo.png"/>
@@ -172,23 +226,23 @@ body {
         <div id="reloadDefault" class="map-button half-left" title="Restore the default values">restore</div>
         <div id="validateMapboxData" class="map-button half-right">validate</div>
       </div>
-
       <hr />
-
-    </div>
-
-    <div id="fields-bottom">
       <div id="launchCapture" class="map-button">launch capture</div>
+    </div>
+    <div id="fields-bottom">
       <div id="backToMap" class="map-button">back to map</div>
-      <div class="multiCol">
-        <div id="linkToGithub" class="half-left text-div">see on Github</div>●
-        <div id="linkToHelp" class="half-right text-div">get some help</div>
+      <div id="menuFooter">
+        <i id="linkToHelp" class="fa fa-question-circle" aria-hidden="true"></i>
+        <i id="linkToGithub" class="fa fa-github" aria-hidden="true"></i>
       </div>
     </div>
   </div>
-
 </div>
+-->
 
+<div id="optionButton">
+  <i class="fa fa-bars" aria-hidden="true"></i>
+</div>
 
 <!--
 <div id='map'></div>
