@@ -1,6 +1,8 @@
+const os = require('os');
 const HomeSpace = require("./HomeSpace.js")
 const MapManager = require('./MapManager.js');
-
+const dialog = require('electron').remote.dialog;
+const OsmPosterMaker = require('osmpostermaker')
 
 class Controller {
 
@@ -16,8 +18,9 @@ class Controller {
       config.mapStyle
     );
 
-    this._initUI();
+    this._destinationFile = null;
 
+    this._initUI();
     this.updateUiWithConfig( config );
   }
 
@@ -37,10 +40,14 @@ class Controller {
       linkToHelpBt: document.getElementById("linkToHelp"),
       linkToGithubBt: document.getElementById("linkToGithub"),
       optionButtonBt: document.getElementById("optionButton"),
+      logArea: document.getElementById("logArea"),
     }
 
     this._uiComponents.optionButtonBt.addEventListener("mousedown", this.showModal.bind(this));
     this._uiComponents.backToMapBt.addEventListener("mousedown", this.showMap.bind(this) );
+
+    this._uiComponents.launchCaptureBt.addEventListener("mousedown", this._openSaveDialog.bind(this) );
+
 
     // relead default button
     this._uiComponents.reloadDefaultBt.addEventListener(
@@ -144,6 +151,49 @@ class Controller {
     this._uiComponents.username.value = config.username;
     this._uiComponents.token.value = config.token;
     this._uiComponents.style.value = config.mapStyle;
+  }
+
+
+  /**
+  * Add a line in the textarea log
+  * @param {String}
+  */
+  addLog( text ){
+    this._uiComponents.logArea.value += "\n" + text;
+    this._uiComponents.logArea.scrollTop = this._uiComponents.logArea.scrollHeight;
+  }
+
+
+  _openSaveDialog(e){
+    var that = this;
+
+    console.log( OsmPosterMaker );
+
+    // if no box
+    if( !this._mapManager.getWgs84box() ){
+      dialog.showMessageBox({
+        type: "warning",
+        title: "The Map",
+        message: "You must select an area before exporting"
+      })
+      return;
+    }
+
+
+    dialog.showSaveDialog({title:"Save the map", defaultPath: os.homedir() }, function (fileName) {
+      console.log( fileName );
+
+      if( fileName === undefined )
+        return;
+
+      that._launchMapCapture( fileName );
+    });
+
+  }
+
+
+  _launchMapCapture( outputName ){
+
   }
 
 }

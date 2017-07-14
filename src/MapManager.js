@@ -54,7 +54,7 @@ class MapManager {
 
     this._map.on('draw:created', this._showPolygonArea.bind( this ));
     this._map.on('draw:edited', this._showPolygonAreaEdited.bind( this ));
-    this._map.on('draw:edited', function(e){
+    this._map.on('draw:deleted', function(e){
       that._wgs84box = null;
     });
   }
@@ -116,7 +116,7 @@ class MapManager {
 
 
   getWgs84box(){
-    return that._wgs84box;
+    return this._wgs84box;
   }
 
   getMapCenter(){

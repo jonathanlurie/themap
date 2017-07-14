@@ -24,6 +24,5 @@
     "fs-sync": "^1.0.4",
     "jsonfile": "^3.0.1",
     "leaflet": "^1.1.0",
-    "osmpostermaker": "github:jonathanlurie/osmpostermaker"
   }
 }

@@ -73,6 +73,7 @@ body {
   margin-bottom: 5px;
 }
 
+
 .map-button,
 #fields-top input {
   width: 100%;
@@ -207,6 +208,26 @@ body {
   color: rgba(255, 255, 255, 1);
 }
 
+#logArea {
+  outline: none;
+  width: 100%;
+  height: 100px;
+  border: none;
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.5);;
+  font-size: 14px;
+  font-family: monospace;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.5);
+  outline: none;
+  resize:none;
+  box-sizing: border-box;
+}
+
+#logArea::-webkit-scrollbar {
+   display: none;
+ }
+
 </style>
 </head>
 <body>
@@ -228,6 +249,7 @@ body {
       </div>
       <hr />
       <div id="launchCapture" class="map-button">launch capture</div>
+      <textarea id="logArea" readonly="readonly"></textarea>
     </div>
     <div id="fields-bottom">
       <div id="backToMap" class="map-button">back to map</div>
