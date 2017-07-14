@@ -2,7 +2,7 @@ const os = require('os');
 const HomeSpace = require("./HomeSpace.js")
 const MapManager = require('./MapManager.js');
 const dialog = require('electron').remote.dialog;
-const OsmPosterMaker = require('osmpostermaker')
+const OsmPosterMaker = require('./OsmPosterMaker/OsmPosterMaker.js');
 
 class Controller {
 
@@ -164,6 +164,11 @@ class Controller {
   }
 
 
+  cleanLog(){
+    this._uiComponents.logArea.value = "";
+  }
+
+
   _openSaveDialog(e){
     var that = this;
 
@@ -193,7 +198,66 @@ class Controller {
 
 
   _launchMapCapture( outputName ){
+    var that = this;
 
+    this.cleanLog();
+
+    var config = HomeSpace.getConfig();
+    var leafletBox = this._mapManager.getWgs84box();
+
+    var box = {
+      n: leafletBox.getNorth(),
+      s: leafletBox.getSouth(),
+      e: leafletBox.getEast(),
+      w: leafletBox.getWest()
+    }
+
+    var zoom = this._mapManager.getMapZoom();
+
+    var mapBoxStyle = {
+      username: config.username,
+      mapStyleID: config.mapStyle,
+      token: config.token,
+      tileSize: 1024
+    }
+
+    var pm = new OsmPosterMaker(
+      box,
+      zoom,
+      HomeSpace.getWorkingDir(),
+      outputName,
+      mapBoxStyle
+    )
+
+    // defining some events
+
+    pm.on( "tileDownloaded", function(index, total){
+      that.addLog("DL tile: " + index + "/" + total);
+      console.log("DL tile: " + index + "/" + total);
+    })
+
+    pm.on( "downloadDone", function(){
+      that.addLog("All tiles are downloaded");
+      console.log("All tiles are downloaded");
+    })
+
+    pm.on( "stripWriten", function(index, total){
+      that.addLog("Strip written: " + index + "/" + total);
+      console.log("Strip written: " + index + "/" + total);
+    })
+
+    pm.on( "successMerge", function( path ){
+      that.addLog("Final image ready at: " + path);
+      console.log("Final image ready at: " + path);
+
+      var shell = require('electron').remote.shell;
+      shell.showItemInFolder(path);
+    })
+
+
+
+
+    pm.launch();
   }
 
 }

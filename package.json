@@ -22,7 +22,8 @@
   },
   "dependencies": {
     "fs-sync": "^1.0.4",
+    "gm": "^1.23.0",
     "jsonfile": "^3.0.1",
-    "leaflet": "^1.1.0",
+    "leaflet": "^1.1.0"
   }
 }
