@@ -27,6 +27,13 @@ class HomeSpace {
     fs_sync.mkdir( _homeSpaceDir );
     fs_sync.mkdir( _homeSpaceDir + "/" + _workingDir );
     fs_sync.copy( __dirname + "/" + _configDefaultFilename , _homeSpaceDir + "/" + _configFilename, { force: true } );
+
+    try{
+      //config = fs_sync.readJSON( _homeSpaceDir + "/" + _configFilename )
+      _localConfig = jsonfile.readFileSync( _homeSpaceDir + "/" + _configFilename )
+    }catch(e){
+      _localConfig = jsonfile.readFileSync( __dirname + "/" + _configDefaultFilename )
+    }
   }
 
 
@@ -34,8 +41,8 @@ class HomeSpace {
   * Get the config as an object
   * @return {Object} the json config as a JS object
   */
-  static getConfig(){
-    if( _localConfig ){
+  static getConfig( forceRead = false ){
+    if( _localConfig && !forceRead ){
       return _localConfig;
     }
 
@@ -68,6 +75,9 @@ class HomeSpace {
     }
 
     jsonfile.writeFileSync( _homeSpaceDir + "/" + _configFilename, currentConfig );
+
+    // reload in the local object
+    HomeSpace.getConfig();
   }
 
 

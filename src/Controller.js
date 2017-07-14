@@ -17,9 +17,14 @@ class Controller {
     );
 
     this._initUI();
+
+    this.updateUiWithConfig( config );
   }
 
   _initUI(){
+
+    var that = this;
+
     this._uiComponents = {
       modal: document.getElementById("modal"),
       username: document.getElementById("username"),
@@ -34,12 +39,87 @@ class Controller {
       optionButtonBt: document.getElementById("optionButton"),
     }
 
-
-
     this._uiComponents.optionButtonBt.addEventListener("mousedown", this.showModal.bind(this));
     this._uiComponents.backToMapBt.addEventListener("mousedown", this.showMap.bind(this) );
 
+    // relead default button
+    this._uiComponents.reloadDefaultBt.addEventListener(
+      "mousedown",
+      function(e){
+        HomeSpace.initHomeSpace();
+        var config = HomeSpace.getConfig();
+
+        // just text fields updates
+        that.updateUiWithConfig( config );
+
+        that._mapManager.updateMapboxConfig({
+          username: config.username,
+          style: config.mapStyle,
+          token: config.token
+        });
+
+        that._mapManager.setMapCenter( config.lastPosition )
+
+        that._mapManager.setMapZoom( config.lastZoom );
+      }
+    );
+
+
+    // validate button
+    this._uiComponents.validateMapboxDataBt.addEventListener(
+      "mousedown",
+      function(e){
+        if( !that._uiComponents.username.value.length ){
+          console.warn("The field 'username' is missing");
+          return;
+        }
+
+        if( !that._uiComponents.token.value.length ){
+          console.warn("The field 'token' is missing");
+          return;
+        }
+
+        if( !that._uiComponents.style.value.length ){
+          console.warn("The field 'style' is missing");
+          return;
+        }
+
+        HomeSpace.updateConfig({
+          username: that._uiComponents.username.value,
+          token: that._uiComponents.token.value,
+          mapStyle: that._uiComponents.style.value
+        })
+
+        var config = HomeSpace.getConfig();
+
+        that._mapManager.updateMapboxConfig({
+          username: config.username,
+          style: config.mapStyle,
+          token: config.token
+        });
+
+      }
+    );
+
+
+    this._mapManager.on( "zoomend", function(e){
+      HomeSpace.updateConfig({
+        lastZoom: that._mapManager.getMapZoom()
+      })
+    })
+
+
+    this._mapManager.on( "moveend", function(e){
+      HomeSpace.updateConfig({
+        lastPosition: that._mapManager.getMapCenter()
+      })
+    })
+
+
     this.showMap();
+
+
+
   }
 
 
@@ -58,6 +138,12 @@ class Controller {
   showModal(){
     this._uiComponents.modal.style.display = "initial";
     this._uiComponents.optionButtonBt.style.display = "none";
+  }
+
+  updateUiWithConfig( config ){
+    this._uiComponents.username.value = config.username;
+    this._uiComponents.token.value = config.token;
+    this._uiComponents.style.value = config.mapStyle;
   }
 
 }

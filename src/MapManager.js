@@ -3,6 +3,8 @@
 class MapManager {
 
   constructor( div, position, zoom, token, username, style ){
+    var that = this;
+
     this._mapboxConfig = {
       token: token,
       username: username,
@@ -16,7 +18,22 @@ class MapManager {
     this._featureGroup = L.featureGroup().addTo( this._map );
     this._wgs84box = null;
 
+    this._events = {
+      zoomend: null,
+      moveend: null
+    };
+
     this._initDrawControl();
+
+    // init events
+    this._map.on("zoomend", function(e){
+      that._events.zoomend( e );
+    })
+
+    this._map.on("moveend", function(e){
+      that._events.moveend( e );
+    })
+
   }
 
 
@@ -100,6 +117,29 @@ class MapManager {
 
   getWgs84box(){
     return that._wgs84box;
+  }
+
+  getMapCenter(){
+    this._map.getCenter()
+    return this._map.getCenter();
+  }
+
+  setMapCenter( latLon ){
+    this._map.panTo( latLon )
+  }
+
+  setMapZoom( z ){
+    this._map.setZoom( z )
+  }
+
+  getMapZoom( ){
+    return this._map.getZoom( )
+  }
+
+  on( eventName, cb ){
+    if( eventName in this._events ){
+      this._events[ eventName ] = cb
+    }
   }
 
 }
