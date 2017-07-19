@@ -4,7 +4,8 @@
   "description": "An app to make map posters",
   "main": "src/main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package": "electron-packager . themap --plateform=darwin --out=$HOME --icon=asset/icon.icns; echo 'Package built in $HOME'"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,8 @@
   "author": "Jonathan Lurie",
   "license": "MIT",
   "devDependencies": {
-    "electron": "~1.6.2"
+    "electron": "~1.6.2",
+    "electron-packager": "^8.7.2"
   },
   "dependencies": {
     "fs-sync": "^1.0.4",

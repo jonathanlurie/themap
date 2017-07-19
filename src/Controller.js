@@ -19,9 +19,10 @@ class Controller {
     );
 
     this._destinationFile = null;
-
+    this._logString = "";
     this._initUI();
     this.updateUiWithConfig( config );
+    this._initLogInterval();
   }
 
   _initUI(){
@@ -154,18 +155,44 @@ class Controller {
   }
 
 
+  _initLogInterval(){
+    var that = this;
+
+    /*
+    setInterval(function() {
+      console.log( "refresh log");
+      that._uiComponents.logArea.value = that._logString;
+      that._uiComponents.logArea.scrollTop = that._uiComponents.logArea.scrollHeight;
+    },
+    100); // ms
+    */
+
+    var delay = 300; // ms
+
+    function timeoutLoop() {
+      console.log( "refresh log");
+      that._uiComponents.logArea.value = that._logString;
+      that._uiComponents.logArea.scrollTop = that._uiComponents.logArea.scrollHeight;
+      setTimeout(timeoutLoop, delay);
+   }
+
+   setTimeout(timeoutLoop, delay);
+
+  }
+
   /**
   * Add a line in the textarea log
   * @param {String}
   */
   addLog( text ){
-    this._uiComponents.logArea.value += "\n" + text;
-    this._uiComponents.logArea.scrollTop = this._uiComponents.logArea.scrollHeight;
+    this._logString += "\n" + text;
+    //
   }
 
 
   cleanLog(){
-    this._uiComponents.logArea.value = "";
+    //this._uiComponents.logArea.value = "";
+    this._logString = "";
   }
 
 
@@ -253,9 +280,6 @@ class Controller {
       var shell = require('electron').remote.shell;
       shell.showItemInFolder(path);
     })
-
-
-
 
     pm.launch();
   }
