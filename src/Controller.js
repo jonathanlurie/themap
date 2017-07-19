@@ -7,6 +7,9 @@ const OsmPosterMaker = require('./OsmPosterMaker/OsmPosterMaker.js');
 class Controller {
 
   constructor(){
+    // clean the working dir
+    HomeSpace.cleanWorkingDir();
+    
     var config = HomeSpace.getConfig();
 
     this._mapManager = new MapManager(
@@ -279,6 +282,9 @@ class Controller {
 
       var shell = require('electron').remote.shell;
       shell.showItemInFolder(path);
+
+      // clean the working dir
+      HomeSpace.cleanWorkingDir();
     })
 
     pm.launch();

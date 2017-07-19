@@ -1,5 +1,6 @@
 const os = require('os');
 //const fs = require('fs');
+const execSync = require('child_process').execSync;
 const fs_sync = require('fs-sync');
 const jsonfile = require('jsonfile')
 jsonfile.spaces = 2;
@@ -93,6 +94,10 @@ class HomeSpace {
     return _homeSpaceDir + "/" + _workingDir
   }
 
+
+  static cleanWorkingDir(){
+    execSync("rm " + _homeSpaceDir + "/" + _workingDir + "/*");
+  }
 
 }
 
