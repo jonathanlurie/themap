@@ -96,7 +96,11 @@ class HomeSpace {
 
 
   static cleanWorkingDir(){
-    execSync("rm " + _homeSpaceDir + "/" + _workingDir + "/*");
+    try{
+      execSync("rm " + _homeSpaceDir + "/" + _workingDir + "/*");
+    }catch(e){
+      console.warn( e );
+    }
   }
 
 }
