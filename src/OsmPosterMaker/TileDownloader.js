@@ -2,6 +2,7 @@ var fs = require('fs');
 var http = require('http');
 var https = require('https');
 var execSync = require('child_process').execSync;
+var spawnSync = require('child_process').spawnSync;
 
 class TileDownloader {
 
@@ -95,6 +96,7 @@ class TileDownloader {
 
     var distantFileUrl = this._tileFileList[i].url;
 
+    /*
     var cmd = [
       "wget",
       "-O",
@@ -102,10 +104,17 @@ class TileDownloader {
       distantFileUrl,
       ">/dev/null 2>&1"
     ].join(" ");
+    */
+    //console.log(cmd);
 
     //console.log( cmd );
-
-    execSync(cmd);
+    try{
+      //execSync(cmd);
+      execSync("curl " + distantFileUrl + " > " + localFilePath)
+    }catch(e){
+      console.error( e );
+    }
+    //spawnSync(cmd)
   }
 
 
