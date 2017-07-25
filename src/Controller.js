@@ -53,13 +53,13 @@ class Controller {
     this._uiComponents.launchCaptureBt.addEventListener("mousedown", this._openSaveDialog.bind(this) );
 
     this._uiComponents.linkToHelpBt.addEventListener("mouseup", function(e){
-      shell.openExternal('https://github.com/jonathanlurie/themap/help')
+      shell.openExternal('https://github.com/jonathanlurie/themap/tree/master/help')
     });
 
     this._uiComponents.linkToGithubBt.addEventListener("mouseup", function(e){
       shell.openExternal('https://github.com/jonathanlurie/themap')
     });
-    
+
     // relead default button
     this._uiComponents.reloadDefaultBt.addEventListener(
       "mousedown",
