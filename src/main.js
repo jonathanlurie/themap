@@ -16,7 +16,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1000, height: 800})
+  //mainWindow = new BrowserWindow({width: 1000, height: 800})
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -82,8 +82,3 @@ var template = [{
 ];
 
 var builtMenu = Menu.buildFromTemplate(template)
-console.log( builtMenu );
-
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.

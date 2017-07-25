@@ -3,13 +3,14 @@ const HomeSpace = require("./HomeSpace.js")
 const MapManager = require('./MapManager.js');
 const dialog = require('electron').remote.dialog;
 const OsmPosterMaker = require('./OsmPosterMaker/OsmPosterMaker.js');
+const {shell} = require('electron');
 
 class Controller {
 
   constructor(){
     // clean the working dir
     HomeSpace.cleanWorkingDir();
-    
+
     var config = HomeSpace.getConfig();
 
     this._mapManager = new MapManager(
@@ -49,10 +50,16 @@ class Controller {
 
     this._uiComponents.optionButtonBt.addEventListener("mousedown", this.showModal.bind(this));
     this._uiComponents.backToMapBt.addEventListener("mousedown", this.showMap.bind(this) );
-
     this._uiComponents.launchCaptureBt.addEventListener("mousedown", this._openSaveDialog.bind(this) );
 
+    this._uiComponents.linkToHelpBt.addEventListener("mouseup", function(e){
+      shell.openExternal('https://github.com/jonathanlurie/themap/help')
+    });
 
+    this._uiComponents.linkToGithubBt.addEventListener("mouseup", function(e){
+      shell.openExternal('https://github.com/jonathanlurie/themap')
+    });
+    
     // relead default button
     this._uiComponents.reloadDefaultBt.addEventListener(
       "mousedown",
