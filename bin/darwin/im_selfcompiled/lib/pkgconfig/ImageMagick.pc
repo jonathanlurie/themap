@@ -1,0 +1,14 @@
+prefix=/Users/jonathanlurie/Desktop/im
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/ImageMagick-7
+includearchdir=/Users/jonathanlurie/Desktop/im/include/ImageMagick-7
+libname=MagickCore-7.Q16HDRI
+ 
+Name: ImageMagick
+Description: ImageMagick - convert, edit, and compose images (ABI Q16HDRI)
+URL: https://www.imagemagick.org
+Version: 7.0.6
+Cflags:  -I${includearchdir} -I${includedir} -DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16
+Libs: -L${libdir} -l${libname}
+Libs.private: -L${libdir} -l${libname}  -ljbig -L/opt/local/lib -llcms2 -ltiff -L/opt/local/lib -lfreetype  -ljpeg   -L/opt/local/lib -lpng16  -L/opt/local/lib -ldjvulibre -L/opt/local/lib -lfftw3   -L/opt/local/lib -lfontconfig -lfreetype -lwebp   -lXext -lXt   -lSM -lICE -lX11  -L/opt/local/lib -llzma -lbz2 -L/opt/local/lib -lIlmImf -lz -lImath -lHalf -lIex -lIlmThread -lpthread -L/opt/local/lib -lopenjp2 -L/opt/local/lib -lpangocairo-1.0 -lcairo -lpangoft2-1.0 -lpango-1.0 -lm -lgobject-2.0 -lglib-2.0 -lintl -lfontconfig -lfreetype   -L/opt/local/lib -lxml2  -L/opt/local/lib -lz  -lm      -lm

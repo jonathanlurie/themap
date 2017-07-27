@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuremap [
+  <!ELEMENT configuremap (configure)+>
+  <!ATTLIST configuremap xmlns CDATA #FIXED ''>
+  <!ELEMENT configure EMPTY>
+  <!ATTLIST configure xmlns CDATA #FIXED '' name NMTOKEN #REQUIRED
+    value CDATA #REQUIRED>
+]>
+<!--
+  ImageMagick build configuration.
+-->
+<configuremap>
+  <configure name="CC" value="gcc"/>
+  <configure name="CFLAGS" value="-I/opt/local/include/libxml2 -I/opt/local/include/libpng16  -D_REENTRANT -I/opt/local/include/pango-1.0 -I/opt/local/include/cairo -I/opt/local/include/pixman-1 -I/opt/local/include/libpng16 -I/opt/local/include -I/opt/local/include/pango-1.0 -I/opt/local/include/harfbuzz -I/opt/local/include/pango-1.0 -I/opt/local/include/glib-2.0 -I/opt/local/lib/glib-2.0/include -I/opt/local/include -I/opt/local/include/freetype2 -I/opt/local/include -I/opt/local/include/libpng16 -I/opt/local/include -I/opt/local/include/freetype2 -D_THREAD_SAFE -I/opt/local/include/OpenEXR -I/opt/local/include -I/opt/local/include/openjpeg-2.1 -I/opt/local/include -I/opt/local/include/freetype2 -I/opt/local/include -I/opt/local/include/freetype2 -I/opt/local/include -I/opt/local/include/libpng16 -I/opt/local/include -I/opt/local/include/freetype2 -I/opt/local/include -I/opt/local/include -I/opt/local/include   -g -O2 -Wall -mtune=haswell -fexceptions -D_FORTIFY_SOURCE=0 -D_THREAD_SAFE -pthread -DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16"/>
+  <configure name="CODER_PATH" value="/Users/jonathanlurie/Desktop/im/lib/ImageMagick-7.0.6/modules-Q16HDRI/coders"/>
+  <configure name="CONFIGURE_PATH" value="/Users/jonathanlurie/Desktop/im/etc/ImageMagick-7/"/>
+  <configure name="CONFIGURE" value="./configure  '--prefix=/Users/jonathanlurie/Desktop/im' 'CPPFLAGS=-I/Users/jonathanlurie/Desktop/libpng/include' 'LDFLAGS=-L/Users/jonathanlurie/Desktop/libpng/lib'"/>
+  <configure name="COPYRIGHT" value="Copyright (C) 1999-2017 ImageMagick Studio LLC"/>
+  <configure name="CPPFLAGS" value="-I/Users/jonathanlurie/Desktop/im/include/ImageMagick-7"/>
+  <configure name="CXXFLAGS" value="-g -O2 -D_THREAD_SAFE -pthread"/>
+  <configure name="CXX" value="g++"/>
+  <configure name="DEFS" value="-DHAVE_CONFIG_H"/>
+  <configure name="DELEGATES" value="bzlib djvu mpeg fftw fontconfig freetype jbig jng jpeg lcms lzma openexr openjp2 pango png ps tiff webp x xml zlib"/>
+  <configure name="DISTCHECK_CONFIG_FLAGS" value="'CPPFLAGS=-I/Users/jonathanlurie/Desktop/libpng/include' 'LDFLAGS=-L/Users/jonathanlurie/Desktop/libpng/lib'  --disable-deprecated  --with-quantum-depth=16  --with-jemalloc=no  --with-umem=no  --with-autotrace=no  --with-gslib=no  --with-fontpath=  --with-rsvg=no  --with-perl=no "/>
+  <configure name="DOCUMENTATION_PATH" value="/Users/jonathanlurie/Desktop/im/share/doc/ImageMagick-7"/>
+  <configure name="EXEC-PREFIX" value="/Users/jonathanlurie/Desktop/im"/>
+  <configure name="EXECUTABLE_PATH" value="/Users/jonathanlurie/Desktop/im/bin"/>
+  <configure name="FEATURES" value="DPC HDRI Cipher"/>
+  <configure name="FILTER_PATH" value="/Users/jonathanlurie/Desktop/im/lib/ImageMagick-7.0.6/modules-Q16HDRI/filters"/>
+  <configure name="GIT_REVISION" value="12235" />
+  <configure name="HOST" value="x86_64-apple-darwin15.6.0"/>
+  <configure name="INCLUDE_PATH" value="/Users/jonathanlurie/Desktop/im/include/ImageMagick-7"/>
+  <configure name="LDFLAGS" value="-L/Users/jonathanlurie/Desktop/im/lib -L/Users/jonathanlurie/Desktop/libpng/lib  -L/usr/X11/lib"/>
+  <configure name="LIBRARY_PATH" value="/Users/jonathanlurie/Desktop/im/lib/ImageMagick-7.0.6"/>
+  <configure name="LIBS" value=" -ljbig -L/opt/local/lib -llcms2 -ltiff -L/opt/local/lib -lfreetype  -ljpeg   -L/opt/local/lib -lpng16  -L/opt/local/lib -ldjvulibre -L/opt/local/lib -lfftw3   -L/opt/local/lib -lfontconfig -lfreetype -lwebp   -lXext -lXt   -lSM -lICE -lX11  -L/opt/local/lib -llzma -lbz2 -L/opt/local/lib -lIlmImf -lz -lImath -lHalf -lIex -lIlmThread -lpthread -L/opt/local/lib -lopenjp2 -L/opt/local/lib -lpangocairo-1.0 -lcairo -lpangoft2-1.0 -lpango-1.0 -lm -lgobject-2.0 -lglib-2.0 -lintl -lfontconfig -lfreetype   -L/opt/local/lib -lxml2  -L/opt/local/lib -lz  -lm     "/>
+  <configure name="LIB_VERSION_NUMBER" value="7,0,6,3"/>
+  <configure name="LIB_VERSION" value="0x706"/>
+  <configure name="NAME" value="ImageMagick"/>
+  <configure name="PCFLAGS" value="-DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16"/>
+  <configure name="PREFIX" value="/Users/jonathanlurie/Desktop/im"/>
+  <configure name="QuantumDepth" value="16"/>
+  <configure name="RELEASE_DATE" value="2017-07-26"/>
+  <configure name="SHAREARCH_PATH" value="/Users/jonathanlurie/Desktop/im/lib/ImageMagick-7.0.6/config-Q16HDRI"/>
+  <configure name="SHARE_PATH" value="/Users/jonathanlurie/Desktop/im/share/ImageMagick-7"/>
+  <configure name="TARGET_CPU" value="x86_64"/>
+  <configure name="TARGET_OS" value="darwin15.6.0"/>
+  <configure name="TARGET_VENDOR" value="apple"/>
+  <configure name="VERSION" value="7.0.6"/>
+  <configure name="WEBSITE" value="http://www.imagemagick.org"/>
+</configuremap>
