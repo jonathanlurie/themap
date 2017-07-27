@@ -1,15 +1,13 @@
-//const imagemagickPath = __dirname + "/../../bin/darwin/ImageMagick-7.0.5"
-const imagemagickPath = __dirname + "/../../bin/darwin/im_selfcompiled"
+const imagemagickPath = __dirname + "/../../bin/darwin/imagemagick"
 const libpngPath = __dirname + "/../../bin/darwin/libpng";
-//var gm = require('gm').subClass({ imageMagick: true, appPath: imagemagickPath });
 
+// Use a custom libpng
+process.env['DYLD_LIBRARY_PATH'] = libpngPath + "/lib:"
 
+// Use a custom Imagamagick
 process.env['MAGICK_HOME'] = imagemagickPath;
 process.env['PATH'] = imagemagickPath + "/bin:" + process.env['PATH'];
-process.env['DYLD_LIBRARY_PATH'] = libpngPath + "/lib:"
 process.env['DYLD_LIBRARY_PATH'] = imagemagickPath + "/lib:"
-
-
 
 var gm = require('gm').subClass({ imageMagick: true });
 

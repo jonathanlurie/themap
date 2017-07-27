@@ -222,7 +222,7 @@ class Controller {
     }
 
 
-    dialog.showSaveDialog({title:"Save the map", defaultPath: os.homedir() }, function (fileName) {
+    dialog.showSaveDialog({title:"Save the map", defaultPath: os.homedir() + "/output.png" }, function (fileName) {
       console.log( fileName );
 
       if( fileName === undefined )

@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
-    "package": "electron-packager . themap --overwrite --plateform=darwin --out=$HOME --icon=asset/icon.icns; echo 'Package built in $HOME'"
+    "package": "electron-packager . 'The Map' --overwrite --plateform=darwin --out=$HOME --icon=asset/icon.icns; echo 'Package built in $HOME'"
   },
   "repository": {
     "type": "git",

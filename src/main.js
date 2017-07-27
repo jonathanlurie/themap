@@ -1,4 +1,5 @@
 const electron = require('electron')
+const {shell} = require('electron');
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
@@ -26,7 +27,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -67,6 +68,9 @@ var template = [{
     submenu: [
         //{ label: "About Application", selector: "orderFrontStandardAboutPanel:" },
         //{ type: "separator" },
+        { label: "About", accelerator: "", click: function() {
+          shell.openExternal('https://github.com/jonathanlurie/themap');
+        }},
         { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
     ]}, {
     label: "Edit",
