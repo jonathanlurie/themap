@@ -124,6 +124,8 @@ class Controller {
       HomeSpace.updateConfig({
         lastZoom: that._mapManager.getMapZoom()
       })
+
+      document.title = "The Map. (" + that._mapManager.getMapZoom() + ")";
     })
 
 
@@ -234,6 +236,12 @@ class Controller {
   }
 
 
+  _getTileSize(){
+    var tileSizeSelector = document.getElementById("tileSizeSelector");
+    return tileSizeSelector.options[tileSizeSelector.selectedIndex].value;
+  }
+
+
   _launchMapCapture( outputName ){
     var that = this;
 
@@ -255,8 +263,10 @@ class Controller {
       username: config.username,
       mapStyleID: config.mapStyle,
       token: config.token,
-      tileSize: 1024
+      tileSize: this._getTileSize()
     }
+
+    console.log( mapBoxStyle );
 
     var pm = new OsmPosterMaker(
       box,
