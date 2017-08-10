@@ -1,3 +1,4 @@
+/*
 const imagemagickPath = __dirname + "/../../bin/darwin/imagemagick"
 const libpngPath = __dirname + "/../../bin/darwin/libpng";
 
@@ -8,6 +9,7 @@ process.env['DYLD_LIBRARY_PATH'] = libpngPath + "/lib:"
 process.env['MAGICK_HOME'] = imagemagickPath;
 process.env['PATH'] = imagemagickPath + "/bin:" + process.env['PATH'];
 process.env['DYLD_LIBRARY_PATH'] = imagemagickPath + "/lib:"
+*/
 
 var gm = require('gm').subClass({ imageMagick: true });
 
