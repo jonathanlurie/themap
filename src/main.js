@@ -15,6 +15,10 @@ var Menu = electron.Menu;
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
+function openDevTools(){
+  mainWindow.webContents.openDevTools();
+}
+
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 1000, height: 800})
@@ -27,7 +31,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -71,6 +75,7 @@ var template = [{
         { label: "About", accelerator: "", click: function() {
           shell.openExternal('https://github.com/jonathanlurie/themap');
         }},
+        { label: "Dev tools", accelerator: "Command+D", click: openDevTools },
         { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
     ]}, {
     label: "Edit",
