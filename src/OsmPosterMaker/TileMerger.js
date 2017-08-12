@@ -1,17 +1,10 @@
-/*
-const imagemagickPath = __dirname + "/../../bin/darwin/imagemagick"
-const libpngPath = __dirname + "/../../bin/darwin/libpng";
-
-// Use a custom libpng
-process.env['DYLD_LIBRARY_PATH'] = libpngPath + "/lib:"
-
-// Use a custom Imagamagick
+// this uses the binaries brought by npm package imagemagick-darwin-static
+const imagemagickPath = __dirname + "/../../node_modules/imagemagick-darwin-static/bin/osx/imagemagick/7.0.5-5";
 process.env['MAGICK_HOME'] = imagemagickPath;
 process.env['PATH'] = imagemagickPath + "/bin:" + process.env['PATH'];
 process.env['DYLD_LIBRARY_PATH'] = imagemagickPath + "/lib:"
-*/
 
-var gm = require('gm').subClass({ imageMagick: true });
+var gm = require('gm').subClass({ imageMagick: true /*, appPath: imagemagickPath + "/bin/"*/});
 
 class TileMerger {
   constructor(zoom, tileRange , tileFolder, outputFilename  ){
