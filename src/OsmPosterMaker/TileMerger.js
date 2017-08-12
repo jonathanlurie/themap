@@ -1,8 +1,11 @@
-// this uses the binaries brought by npm package imagemagick-darwin-static
-const imagemagickPath = __dirname + "/../../node_modules/imagemagick-darwin-static/bin/osx/imagemagick/7.0.5-5";
-process.env['MAGICK_HOME'] = imagemagickPath;
-process.env['PATH'] = imagemagickPath + "/bin:" + process.env['PATH'];
-process.env['DYLD_LIBRARY_PATH'] = imagemagickPath + "/lib:"
+
+if (process.platform === 'darwin') {
+  // this uses the binaries brought by npm package imagemagick-darwin-static
+  const imagemagickPath = __dirname + "/../../node_modules/imagemagick-darwin-static/bin/osx/imagemagick/7.0.5-5";
+  process.env['MAGICK_HOME'] = imagemagickPath;
+  process.env['PATH'] = imagemagickPath + "/bin:" + process.env['PATH'];
+  process.env['DYLD_LIBRARY_PATH'] = imagemagickPath + "/lib:"
+}
 
 var gm = require('gm').subClass({ imageMagick: true /*, appPath: imagemagickPath + "/bin/"*/});
 

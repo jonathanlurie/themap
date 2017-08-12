@@ -273,7 +273,7 @@ select,
       <select id="tileSizeSelector">
         <option value="512">Tile size: 512 (good)</option>
         <option value="1024">Tile size: 1024 (hi-rez)</option>
-        <option value="256">Tile size: 256 (faster)</option>
+        <!-- <option value="256">Tile size: 256 (faster)</option> -->
       </select>
       <div id="launchCapture" class="map-button">launch capture</div>
       <textarea id="logArea" readonly="readonly"></textarea>
@@ -293,39 +293,9 @@ select,
   <i class="fa fa-bars" aria-hidden="true"></i>
 </div>
 
-<!--
-<div id='map'></div>
-<input id="theButton" type="button" value="Click Me" style="position: absolute;"  onclick="updateTileStyle('jonathanlurie', 'cj4g48asn0z5e2rn1alrdx14h')">
--->
 <script>
 
-
-//require('./renderer.js')
-
-//const HomeSpace = require("./HomeSpace.js")
-//console.log( HomeSpace.getWorkingDir() )
-
-/*
-const MapManager = require('./MapManager.js');
-var mapManager = new MapManager(
-  "map",
-  [0, 0],
-  2,
-  "pk.eyJ1Ijoiam9uYXRoYW5sdXJpZSIsImEiOiJjajRuandpdnAwMHpzMnd0Y3FwYXBlNTZ0In0.yZ21xWxBlESJVQib1wJDoA",
-  "mapbox",
-  "streets-v10"
- );
-
-
- mapManager.updateMapboxConfig({
-   username: 'jonathanlurie',
-   style: 'cj4g48asn0z5e2rn1alrdx14h'
- })
-*/
-
-
 const Controller = require('./Controller.js');
-
 var controller = new Controller();
 
 </script>

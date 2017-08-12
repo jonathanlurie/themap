@@ -89,7 +89,7 @@ class MapManager {
                       this._mapboxConfig.username +
                       '/' +
                       this._mapboxConfig.style +
-                      '/tiles/{z}/{x}/{y}?access_token=' +
+                      '/tiles/512/{z}/{x}/{y}@2x?access_token=' +
                       this._mapboxConfig.token
 
     return osmPattern;
