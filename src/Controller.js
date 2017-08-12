@@ -8,6 +8,7 @@ const {shell} = require('electron');
 class Controller {
 
   constructor(){
+    var that = this;
     // clean the working dir
     HomeSpace.cleanWorkingDir();
 
@@ -26,7 +27,9 @@ class Controller {
     this._logString = "";
     this._initUI();
     this.updateUiWithConfig( config );
-    this._initLogInterval();
+    //this._initLogInterval();
+
+    this._decal = 0;
   }
 
   _initUI(){
@@ -149,6 +152,7 @@ class Controller {
   showMap(){
     this._uiComponents.modal.style.display = "none";
     this._uiComponents.optionButtonBt.style.display = "initial";
+    document.title = "The Map. (" + this._mapManager.getMapZoom() + ")";
   }
 
 
@@ -197,16 +201,24 @@ class Controller {
   * @param {String}
   */
   addLog( text ){
+    document.title = "The Map. ( " + text + " )";
+    console.log( text );
     this._logString += "\n" + text;
-    //
+    this._refreshLogArea();
   }
 
 
   cleanLog(){
-    //this._uiComponents.logArea.value = "";
+    document.title = "The Map.";
     this._logString = "";
+    this._refreshLogArea();
   }
 
+
+  _refreshLogArea(){
+    this._uiComponents.logArea.value = this._logString;
+    this._uiComponents.logArea.scrollTop = this._uiComponents.logArea.scrollHeight;
+  }
 
   _openSaveDialog(e){
     var that = this;
@@ -279,23 +291,23 @@ class Controller {
     // defining some events
 
     pm.on( "tileDownloaded", function(index, total){
-      that.addLog("DL tile: " + index + "/" + total);
-      console.log("DL tile: " + index + "/" + total);
+      that.addLog( "downloading tile: " + index + "/" + total );
     })
 
     pm.on( "downloadDone", function(){
-      that.addLog("All tiles are downloaded");
-      console.log("All tiles are downloaded");
+      that.addLog("all tiles are downloaded");
     })
 
     pm.on( "stripWriten", function(index, total){
-      that.addLog("Strip written: " + index + "/" + total);
-      console.log("Strip written: " + index + "/" + total);
+      that.addLog("strip written: " + index + "/" + total);
+
+      if( index == total ){
+        that.addLog("merging final image...");
+      }
     })
 
     pm.on( "successMerge", function( path ){
-      that.addLog("Final image ready at: " + path);
-      console.log("Final image ready at: " + path);
+      that.addLog("final image ready at: " + path);
 
       var shell = require('electron').remote.shell;
       shell.showItemInFolder(path);
